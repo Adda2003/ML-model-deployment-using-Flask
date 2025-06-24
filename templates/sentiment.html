@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Sentiment Analysis</h1>
+
+    <form method="POST" action="{{ url_for('sentiment.analyze') }}">
+      <div class="field">
+        <label class="label">Enter text to analyze</label>
+        <div class="control">
+          <textarea class="textarea" name="text" placeholder="Type your text here…">{{ request.form.text }}</textarea>
+        </div>
+      </div>
+      <div class="control">
+        <button class="button is-link" type="submit">Analyze</button>
+      </div>
+    </form>
+
+    {% if result %}
+      <div class="notification is-info mt-5">
+        <p><strong>Positive:</strong> {{ result.pos }}</p>
+        <p><strong>Neutral:</strong> {{ result.neu }}</p>
+        <p><strong>Negative:</strong> {{ result.neg }}</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

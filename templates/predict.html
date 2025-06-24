@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Hello, {{ name }}!</h1>
+
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('main.profile') }}">
+      <div class="field">
+        <label class="label">Choose an image</label>
+        <div class="control">
+          <input class="input" type="file" name="image" accept="image/*">
+        </div>
+      </div>
+      <div class="control">
+        <button class="button is-primary" type="submit">Predict Digit</button>
+      </div>
+    </form>
+
+    {% if digit is defined %}
+      <div class="notification is-info">
+        Predicted Digit: <strong>{{ digit }}</strong>
+      </div>
+      <figure class="image is-128x128">
+        <img src="{{ image_url }}" alt="uploaded image">
+      </figure>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
